@@ -15,6 +15,8 @@ struct ProjectsView: View {
     let showClosedProjects: Bool
     let projects: FetchRequest<Project>
     
+    @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     init(showClosedProjects: Bool) {
         self.showClosedProjects = showClosedProjects
@@ -30,16 +32,61 @@ struct ProjectsView: View {
         NavigationView {
             List {
                 ForEach(projects.wrappedValue) { project in
-                    Section(header: Text(project.projectTitle)) {
+                    Section(header: ProjectHeaderView(project: project)) {
                         ForEach(project.projectItems) { item in
-                            ItemRowView(item: item)
+                            ItemRowView(project: project, item: item)
+                        }
+                        .onDelete { offsets in
+                            delete(offsets, from: project)
+                        }
+                        
+                        if showClosedProjects == false {
+                            Button {
+                                addItem(to: project)
+                            } label: {
+                                Label("Add New Item", systemImage: "plus")
+                            }
                         }
                     }
                 }
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle(showClosedProjects ? "Closed Projects" : "Open Projects")
+            .toolbar {
+                if showClosedProjects == false {
+                    Button{
+                        withAnimation {
+                            let project = Project(context: managedObjectContext)
+                            project.closed = false
+                            project.creationDate = Date()
+                            dataController.save()
+                        }
+                    } label: {
+                        Label("Add Project", systemImage: "plus")
+                    }
+                }
+            }
         }
+    }
+    
+    func addItem(to project: Project) {
+        withAnimation {
+            let item = Item(context: managedObjectContext)
+            item.project = project
+            item.creationDate = Date()
+            dataController.save()
+        }
+    }
+    
+    func delete(_ offsets: IndexSet, from project: Project) {
+        let allItems = project.projectItems
+        
+        for offset in offsets {
+            let item = allItems[offset]
+            dataController.delete(item)
+        }
+        
+        dataController.save()
     }
 }
 
