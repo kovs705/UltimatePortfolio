@@ -37,16 +37,29 @@ struct ProjectsView: View {
                             ItemRowView(project: project, item: item)
                         }
                         .onDelete { offsets in
-                            delete(offsets, from: project)
+                            let allItems = project.projectItems
+                            
+                            for offset in offsets {
+                                let item = allItems[offset]
+                                dataController.delete(item)
+                            }
+                            
+                            dataController.save()
                         }
                         
                         if showClosedProjects == false {
                             Button {
-                                addItem(to: project)
+                                withAnimation {
+                                    let item = Item(context: managedObjectContext)
+                                    item.project = project
+                                    item.creationDate = Date()
+                                    dataController.save()
+                                }
                             } label: {
                                 Label("Add New Item", systemImage: "plus")
                             }
                         }
+                        
                     }
                 }
             }
@@ -78,16 +91,6 @@ struct ProjectsView: View {
         }
     }
     
-    func delete(_ offsets: IndexSet, from project: Project) {
-        let allItems = project.projectItems
-        
-        for offset in offsets {
-            let item = allItems[offset]
-            dataController.delete(item)
-        }
-        
-        dataController.save()
-    }
 }
 
 struct ProjectsView_Previews: PreviewProvider {
