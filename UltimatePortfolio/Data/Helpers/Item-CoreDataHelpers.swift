@@ -7,35 +7,35 @@
 
 import Foundation
 
-extension Item {
+extension Word {
     
     enum SortOrder {
         case optimized, title, creationDate
     }
     
-    var itemTitle: String {
+    var wordTitle: String {
         title ?? "New Item"
     }
     
-    var itemDetail: String {
+    var wordDetail: String {
         detail ?? ""
     }
     
-    var itemCreationDate: Date {
+    var wordCreationDate: Date {
         creationDate ?? Date()
     }
     
-    static var example: Item {
+    static var example: Word {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
         
-        let item = Item(context: viewContext)
-        item.title = "Example title"
-        item.detail = "this is an example item"
-        item.priority = 3
-        item.creationDate = Date()
+        let word = Word(context: viewContext)
+        word.title = "Example title"
+        word.detail = "this is an example item"
+        word.priority = 3
+        word.creationDate = Date()
         
-        return item
+        return word
     }
     
 }

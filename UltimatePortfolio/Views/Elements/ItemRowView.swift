@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ItemRowView: View {
     
-    @ObservedObject var project: Project
-    @ObservedObject var item: Item
+    @ObservedObject var group: Group
+    @ObservedObject var word: Word
 
     var icon: some View {
-        if item.completed {
+        if word.completed {
             return Image(systemName: "checkmark.circle")
-                .foregroundColor(Color(project.projectColor))
-        } else if item.priority == 3 {
+                .foregroundColor(Color(group.groupColor))
+        } else if word.priority == 3 {
             return Image(systemName: "exclamationmark.triangle")
-                .foregroundColor(Color(project.projectColor))
+                .foregroundColor(Color(group.groupColor))
         } else {
             return Image(systemName: "checkmark.circle")
                 .foregroundColor(.clear)
@@ -26,19 +26,19 @@ struct ItemRowView: View {
     }
 
     var label: Text {
-        if item.completed {
-            return Text("\(item.itemTitle), completed.")
-        } else if item.priority == 3 {
-            return Text("\(item.itemTitle), high priority.")
+        if word.completed {
+            return Text("\(word.wordTitle), completed.")
+        } else if word.priority == 3 {
+            return Text("\(word.wordTitle), high priority.")
         } else {
-            return Text(item.itemTitle)
+            return Text(word.wordTitle)
         }
     }
 
     var body: some View {
-        NavigationLink(destination: EditItemView(item: item)) {
+        NavigationLink(destination: EditItemView(word: word)) {
             Label {
-                Text(item.itemTitle)
+                Text(word.wordTitle)
             } icon: {
                 icon
             }
@@ -50,8 +50,8 @@ struct ItemRowView: View {
 struct ItemRowView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            ItemRowView(project: Project.example, item: Item.example)
-            ItemRowView(project: Project.example, item: Item.example)
+            ItemRowView(group: Group.example, word: Word.example)
+            ItemRowView(group: Group.example, word: Word.example)
         }
     }
 }

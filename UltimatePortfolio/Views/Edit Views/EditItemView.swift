@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditItemView: View {
     
-    let item: Item
+    let word: Word
     @EnvironmentObject var dataController: DataController
     
     @State private var title: String
@@ -17,13 +17,13 @@ struct EditItemView: View {
     @State private var priority: Int
     @State private var completed: Bool
     
-    init(item: Item) {
-        self.item = item
+    init(word: Word) {
+        self.word = word
         
-        _title = State(wrappedValue: item.itemTitle)
-        _detail = State(wrappedValue: item.itemDetail)
-        _priority = State(wrappedValue: Int(item.priority))
-        _completed = State(wrappedValue: item.completed)
+        _title = State(wrappedValue: word.wordTitle)
+        _detail = State(wrappedValue: word.wordDetail)
+        _priority = State(wrappedValue: Int(word.priority))
+        _completed = State(wrappedValue: word.completed)
     }
     
     var body: some View {
@@ -51,17 +51,17 @@ struct EditItemView: View {
     }
     
     func update() {
-        item.project?.objectWillChange.send()
+        word.group?.objectWillChange.send()
         
-        item.title = title
-        item.detail = detail
-        item.priority = Int16(priority)
-        item.completed = completed
+        word.title = title
+        word.detail = detail
+        word.priority = Int16(priority)
+        word.completed = completed
     }
 }
 
 struct EditItemView_Previews: PreviewProvider {
     static var previews: some View {
-        EditItemView(item: Item.example)
+        EditItemView(word: Word.example)
     }
 }

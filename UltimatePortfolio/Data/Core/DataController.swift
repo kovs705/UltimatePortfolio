@@ -43,19 +43,19 @@ class DataController: ObservableObject {
         let viewContext = container.viewContext
         
         for i in 1...5 {
-            let project = Project(context: viewContext)
-            project.title = "Project \(i)"
-            project.items = []
-            project.creationDate = Date()
-            project.closed = Bool.random()
+            let group = Group(context: viewContext)
+            group.title = "Project \(i)"
+            group.words = []
+            group.creationDate = Date()
+            group.closed = Bool.random()
             
             for j in 1...5 {
-                let item = Item(context: viewContext)
-                item.title = "Item \(j)"
-                item.creationDate = Date()
-                item.completed = Bool.random()
-                item.project = project
-                item.priority = Int16.random(in: 1...3)
+                let word = Word(context: viewContext)
+                word.title = "Word \(j)"
+                word.creationDate = Date()
+                word.completed = Bool.random()
+                word.group = group
+                word.priority = Int16.random(in: 1...3)
             }
         }
         
@@ -74,11 +74,11 @@ class DataController: ObservableObject {
     }
     
     func deleteAll() {
-        let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = Item.fetchRequest()
+        let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = Word.fetchRequest()
         let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
         _ = try? container.viewContext.execute(batchDeleteRequest1)
         
-        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Item.fetchRequest()
+        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Word.fetchRequest()
         let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
         _ = try? container.viewContext.execute(batchDeleteRequest2)
         

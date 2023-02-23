@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditProjectView: View {
-    let project: Project
+    let group: Group
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
@@ -22,22 +22,22 @@ struct EditProjectView: View {
         GridItem(.adaptive(minimum: 44))
     ]
 
-    init(project: Project) {
-        self.project = project
+    init(project: Group) {
+        self.group = project
 
-        _title = State(wrappedValue: project.projectTitle)
-        _detail = State(wrappedValue: project.projectDetail)
-        _color = State(wrappedValue: project.projectColor)
+        _title = State(wrappedValue: project.groupTitle)
+        _detail = State(wrappedValue: project.groupDetail)
+        _color = State(wrappedValue: project.groupColor)
     }
 
     func update() {
-        project.title = title
-        project.detail = detail
-        project.color = color
+        group.title = title
+        group.detail = detail
+        group.color = color
     }
 
     func delete() {
-        dataController.delete(project)
+        dataController.delete(group)
         presentationMode.wrappedValue.dismiss()
     }
 
@@ -50,15 +50,15 @@ struct EditProjectView: View {
 
             Section(header: Text("Custom project color")) {
                 LazyVGrid(columns: colorColumns) {
-                    ForEach(Project.colors, id: \.self) { color in
+                    ForEach(Group.colors, id: \.self) { color in
                         colorButton(for: color)
                     }
                 }
             }
 
             Section(header: Text("Closing a project moves it from the Open tab to the Closed tab; Deleting it removes the project completely.")) {
-                Button(project.closed ? "Reopen this project" : "Close this project") {
-                    project.closed.toggle()
+                Button(group.closed ? "Reopen this project" : "Close this project") {
+                    group.closed.toggle()
                     update()
                 }
 
@@ -101,7 +101,7 @@ struct EditProjectView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        EditProjectView(project: Project.example)
+        EditProjectView(project: Group.example)
             .environmentObject(dataController)
     }
 }

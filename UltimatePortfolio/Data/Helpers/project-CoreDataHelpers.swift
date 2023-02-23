@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Project {
+extension Group {
     
     static let colors = [
             "Pink",
@@ -24,30 +24,30 @@ extension Project {
             "Gray"
         ]
     
-    var projectTitle: String {
+    var groupTitle: String {
         title ?? "New project"
     }
     
-    var projectDetail: String {
+    var groupDetail: String {
         detail ?? ""
     }
     
-    var projectColor: String {
+    var groupColor: String {
         color ?? "Light Blue"
     }
     
-    var projectItems: [Item] {
-        items?.allObjects as? [Item] ?? []
+    var groupItems: [Word] {
+        words?.allObjects as? [Word] ?? []
     }
     
-    var projectItemsDefaultSorted: [Item] {
+    var projectItemsDefaultSorted: [Word] {
         
-        return projectItems.sorted { first, second in
+        return groupItems.sorted { first, second in
             if first.completed == false {
                 if second.completed == true {
                     return true
                 }
-            } else if  first.completed == true {
+            } else if first.completed == true {
                 if second.completed == false {
                     return false
                 }
@@ -61,35 +61,35 @@ extension Project {
             }
             
             // both completed or not and have the same priority:
-            return first.itemCreationDate < second.itemCreationDate
+            return first.wordCreationDate < second.wordCreationDate
         }
     }
     
     var completionAmount: Double {
-        let originalItems = items?.allObjects as? [Item] ?? []
+        let originalItems = words?.allObjects as? [Word] ?? []
         guard originalItems.isEmpty == false else { return 0 }
         
-        let completedItems = originalItems.filter(\.completed)
+        let completedWords = originalItems.filter(\.completed)
         // set to true every item which is completed { $0.completed == true }
-        return Double(completedItems.count) / Double(originalItems.count)
+        return Double(completedWords.count) / Double(originalItems.count)
     }
     
-    static var example: Project {
+    static var example: Group {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
         
-        let project = Project(context: viewContext)
-        project.title = "Example project"
-        project.detail = "this is an example project"
-        project.closed = true
-        project.creationDate = Date()
+        let group = Group(context: viewContext)
+        group.title = "Example project"
+        group.detail = "this is an example group"
+        group.closed = true
+        group.creationDate = Date()
         
-        return project
+        return group
     }
     
-    func projectItems<Value: Comparable>(sortedBy keyPath: KeyPath<Item, Value>) -> [Item] {
+    func projectItems<Value: Comparable>(sortedBy keyPath: KeyPath<Word, Value>) -> [Word] {
         // a func with some sort of a Value which is Comparable, sorted by a keyPath, and this keyPath will point to Item object and our value
-        projectItems.sorted {
+        groupItems.sorted {
             $0[keyPath: keyPath] < $1[keyPath: keyPath]
         }
     }

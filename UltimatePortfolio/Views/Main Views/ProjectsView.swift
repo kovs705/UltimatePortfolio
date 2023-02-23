@@ -13,20 +13,20 @@ struct ProjectsView: View {
     static let closedTag: String? = "Closed"
 
     let showClosedProjects: Bool
-    let projects: FetchRequest<Project>
+    let groups: FetchRequest<Group>
     
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var showingSortOrder = false
     
-    @State private var sortOrder = Item.SortOrder.optimized
+    @State private var sortOrder = Word.SortOrder.optimized
     
     init(showClosedProjects: Bool) {
         self.showClosedProjects = showClosedProjects
         
-        projects = FetchRequest<Project>(entity: Project.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Project.creationDate, ascending: false)
+        groups = FetchRequest<Group>(entity: Group.entity(), sortDescriptors: [
+            NSSortDescriptor(keyPath: \Group.creationDate, ascending: false)
         ], predicate: NSPredicate(format: "closed = %d", showClosedProjects))
         
         // %d - placeholder, so this is a placeholder for showClosedProjects boolean
@@ -35,17 +35,17 @@ struct ProjectsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(projects.wrappedValue) { project in
-                    Section(header: ProjectHeaderView(project: project)) {
-                        ForEach(items(for: project)) { item in
-                            ItemRowView(project: project, item: item)
+                ForEach(groups.wrappedValue) { group in
+                    Section(header: ProjectHeaderView(group: group)) {
+                        ForEach(items(for: group)) { word in
+                            ItemRowView(group: group, word: word)
                         }
                         .onDelete { offsets in
-                            let allItems = project.projectItems
+                            let allItems = group.groupItems
                             
                             for offset in offsets {
-                                let item = allItems[offset]
-                                dataController.delete(item)
+                                let word = allItems[offset]
+                                dataController.delete(word)
                             }
                             
                             dataController.save()
@@ -54,9 +54,9 @@ struct ProjectsView: View {
                         if showClosedProjects == false {
                             Button {
                                 withAnimation {
-                                    let item = Item(context: managedObjectContext)
-                                    item.project = project
-                                    item.creationDate = Date()
+                                    let word = Word(context: managedObjectContext)
+                                    word.group = group
+                                    word.creationDate = Date()
                                     dataController.save()
                                 }
                             } label: {
@@ -67,8 +67,9 @@ struct ProjectsView: View {
                     .actionSheet(isPresented: $showingSortOrder) {
                         ActionSheet(title: Text("Sort items"), message: nil, buttons: [
                             .default(Text("Optimized")) { sortOrder = .optimized },
-                            .default(Text("Creation Darw")) { sortOrder = .creationDate },
-                            .default(Text("Title")) { sortOrder = .title }
+                            .default(Text("Creation Date")) { sortOrder = .creationDate },
+                            .default(Text("Title")) { sortOrder = .title },
+                            .cancel()
                         ])
                     }
                 }
@@ -80,9 +81,9 @@ struct ProjectsView: View {
                     if showClosedProjects == false {
                         Button{
                             withAnimation {
-                                let project = Project(context: managedObjectContext)
-                                project.closed = false
-                                project.creationDate = Date()
+                                let group = Group(context: managedObjectContext)
+                                group.closed = false
+                                group.creationDate = Date()
                                 dataController.save()
                             }
                         } label: {
@@ -102,23 +103,23 @@ struct ProjectsView: View {
         }
     }
     
-    func items(for project: Project) -> [Item] {
+    func items(for group: Group) -> [Word] {
         switch sortOrder {
         case .title:
-            return project.projectItems.sorted(by: \Item.itemTitle)
+            return group.groupItems.sorted(by: \Word.wordTitle)
         case .creationDate:
-            return project.projectItems.sorted(by: \Item.itemCreationDate)
+            return group.groupItems.sorted(by: \Word.wordCreationDate)
         case .optimized:
-            return project.projectItemsDefaultSorted
+            return group.projectItemsDefaultSorted
         }
         
     }
     
-    func addItem(to project: Project) {
+    func addItem(to group: Group) {
         withAnimation {
-            let item = Item(context: managedObjectContext)
-            item.project = project
-            item.creationDate = Date()
+            let word = Word(context: managedObjectContext)
+            word.group = group
+            word.creationDate = Date()
             dataController.save()
         }
     }

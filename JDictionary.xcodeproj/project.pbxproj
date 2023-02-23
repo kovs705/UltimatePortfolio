@@ -12,8 +12,9 @@
 		4E1A288129A118B000EFEF06 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1A288029A118B000EFEF06 /* Binding-OnChange.swift */; };
 		4E71020029A2A22D000EFA3A /* ProjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7101FF29A2A22D000EFA3A /* ProjectHeaderView.swift */; };
 		4E71020229A2A2E0000EFA3A /* EditProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71020129A2A2E0000EFA3A /* EditProjectView.swift */; };
+		4E80A77F29A7D4630098F857 /* DictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80A77E29A7D4630098F857 /* DictView.swift */; };
 		4EB0E94929A557D900479C46 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EB0E94829A557D900479C46 /* Colors.xcassets */; };
-		4EEA18EC299FA33A00FD047E /* UltimatePortfolioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA18EB299FA33A00FD047E /* UltimatePortfolioApp.swift */; };
+		4EEA18EC299FA33A00FD047E /* JDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA18EB299FA33A00FD047E /* JDictionaryApp.swift */; };
 		4EEA18EE299FA33A00FD047E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA18ED299FA33A00FD047E /* ContentView.swift */; };
 		4EEA18F0299FA33C00FD047E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA18EF299FA33C00FD047E /* Assets.xcassets */; };
 		4EEA18F3299FA33C00FD047E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA18F2299FA33C00FD047E /* Preview Assets.xcassets */; };
@@ -32,9 +33,10 @@
 		4E1A288029A118B000EFEF06 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		4E7101FF29A2A22D000EFA3A /* ProjectHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderView.swift; sourceTree = "<group>"; };
 		4E71020129A2A2E0000EFA3A /* EditProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectView.swift; sourceTree = "<group>"; };
+		4E80A77E29A7D4630098F857 /* DictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictView.swift; sourceTree = "<group>"; };
 		4EB0E94829A557D900479C46 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		4EEA18E8299FA33A00FD047E /* UltimatePortfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UltimatePortfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4EEA18EB299FA33A00FD047E /* UltimatePortfolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UltimatePortfolioApp.swift; sourceTree = "<group>"; };
+		4EEA18E8299FA33A00FD047E /* JDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EEA18EB299FA33A00FD047E /* JDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDictionaryApp.swift; sourceTree = "<group>"; };
 		4EEA18ED299FA33A00FD047E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4EEA18EF299FA33C00FD047E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4EEA18F2299FA33C00FD047E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				4EEA18FF299FB65600FD047E /* HomeView.swift */,
 				4EEA1901299FB6CE00FD047E /* ProjectsView.swift */,
 				4EEA18ED299FA33A00FD047E /* ContentView.swift */,
+				4E80A77E29A7D4630098F857 /* DictView.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -145,7 +148,7 @@
 		4EEA18E9299FA33A00FD047E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4EEA18E8299FA33A00FD047E /* UltimatePortfolio.app */,
+				4EEA18E8299FA33A00FD047E /* JDictionary.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				4EEA18FE299FB46800FD047E /* Info.plist */,
-				4EEA18EB299FA33A00FD047E /* UltimatePortfolioApp.swift */,
+				4EEA18EB299FA33A00FD047E /* JDictionaryApp.swift */,
 				4E80A77629A7C5D20098F857 /* Views */,
 				4E80A77729A7C5EE0098F857 /* Data */,
 				4EEA18EF299FA33C00FD047E /* Assets.xcassets */,
@@ -175,9 +178,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4EEA18E7299FA33A00FD047E /* UltimatePortfolio */ = {
+		4EEA18E7299FA33A00FD047E /* JDictionary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4EEA18F6299FA33C00FD047E /* Build configuration list for PBXNativeTarget "UltimatePortfolio" */;
+			buildConfigurationList = 4EEA18F6299FA33C00FD047E /* Build configuration list for PBXNativeTarget "JDictionary" */;
 			buildPhases = (
 				4EEA18E4299FA33A00FD047E /* Sources */,
 				4EEA18E5299FA33A00FD047E /* Frameworks */,
@@ -187,9 +190,9 @@
 			);
 			dependencies = (
 			);
-			name = UltimatePortfolio;
+			name = JDictionary;
 			productName = UltimatePortfolio;
-			productReference = 4EEA18E8299FA33A00FD047E /* UltimatePortfolio.app */;
+			productReference = 4EEA18E8299FA33A00FD047E /* JDictionary.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -207,7 +210,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4EEA18E3299FA33A00FD047E /* Build configuration list for PBXProject "UltimatePortfolio" */;
+			buildConfigurationList = 4EEA18E3299FA33A00FD047E /* Build configuration list for PBXProject "JDictionary" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -220,7 +223,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4EEA18E7299FA33A00FD047E /* UltimatePortfolio */,
+				4EEA18E7299FA33A00FD047E /* JDictionary */,
 			);
 		};
 /* End PBXProject section */
@@ -251,10 +254,11 @@
 				4EEA18FD299FA8D400FD047E /* DataController.swift in Sources */,
 				4E1A287F29A1140A00EFEF06 /* ItemRowView.swift in Sources */,
 				4EEA18EE299FA33A00FD047E /* ContentView.swift in Sources */,
+				4E80A77F29A7D4630098F857 /* DictView.swift in Sources */,
 				4E1A288129A118B000EFEF06 /* Binding-OnChange.swift in Sources */,
 				4EECE06F29A77B12001987A5 /* Sequence-Sorting.swift in Sources */,
 				4EEA1900299FB65600FD047E /* HomeView.swift in Sources */,
-				4EEA18EC299FA33A00FD047E /* UltimatePortfolioApp.swift in Sources */,
+				4EEA18EC299FA33A00FD047E /* JDictionaryApp.swift in Sources */,
 				4EEA190C299FC46900FD047E /* Item-CoreDataHelpers.swift in Sources */,
 				4E1A287D29A1072600EFEF06 /* EditItemView.swift in Sources */,
 			);
@@ -440,7 +444,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4EEA18E3299FA33A00FD047E /* Build configuration list for PBXProject "UltimatePortfolio" */ = {
+		4EEA18E3299FA33A00FD047E /* Build configuration list for PBXProject "JDictionary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4EEA18F4299FA33C00FD047E /* Debug */,
@@ -449,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4EEA18F6299FA33C00FD047E /* Build configuration list for PBXNativeTarget "UltimatePortfolio" */ = {
+		4EEA18F6299FA33C00FD047E /* Build configuration list for PBXNativeTarget "JDictionary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4EEA18F7299FA33C00FD047E /* Debug */,

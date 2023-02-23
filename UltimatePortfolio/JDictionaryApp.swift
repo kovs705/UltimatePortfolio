@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct UltimatePortfolioApp: App {
+struct JDictionaryApp: App {
     
     @StateObject var dataController: DataController
     
